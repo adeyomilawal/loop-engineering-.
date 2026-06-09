@@ -1,0 +1,21 @@
+{
+  "name": "loop-audit",
+  "version": "1.0.0",
+  "description": "Loop Readiness Score — audit a project for loop engineering readiness",
+  "type": "module",
+  "bin": {
+    "loop-audit": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "audit": "npm run build && node dist/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

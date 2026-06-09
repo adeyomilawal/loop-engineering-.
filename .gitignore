@@ -24,9 +24,10 @@ Thumbs.db
 tmp/
 temp/
 
-# Build / dist
-dist/
+# Build / dist (loop-audit dist is committed for zero-install runs)
 build/
+**/node_modules/
+!tools/loop-audit/dist/
 *.egg-info/
 
 # State files that should not be committed in examples
@@ -34,8 +35,10 @@ STATE.md
 state.json
 *.state
 
-# Grok / agent specific
+# Grok / agent specific (runtime in user projects; starters are tracked)
 .grok/
+!starters/**/.grok/
+!starters/**/.grok/**
 .claude/
 .codex/
 *.session

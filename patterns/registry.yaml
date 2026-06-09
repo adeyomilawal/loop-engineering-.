@@ -1,0 +1,51 @@
+# Machine-readable pattern registry for loop-engineering
+# Used by loop-audit, docs site, and future tooling.
+
+patterns:
+  - id: pr-babysitter
+    name: PR Babysitter
+    file: pr-babysitter.md
+    goal: Shepherd PRs through review, CI, rebase, and merge
+    cadence: 5m-15m
+    risk: medium
+    tools: [grok, claude-code, codex, github-actions]
+    skills: [pr-review-triage, minimal-fix, rebase-and-clean]
+    state: pr-babysitter-state.md
+    phases: [discover, triage, fix, verify, notify]
+    human_gates: [security, payments, auth, max-fix-attempts]
+
+  - id: daily-triage
+    name: Daily Triage
+    file: daily-triage.md
+    goal: Prioritized morning scan of CI, issues, commits, and chat
+    cadence: 1d-2h
+    risk: low
+    tools: [grok, claude-code, codex, github-actions]
+    skills: [loop-triage, minimal-fix]
+    state: STATE.md
+    phases: [report, act-small-wins, escalate]
+    human_gates: [design-decisions, multi-file-refactors]
+
+  - id: ci-sweeper
+    name: CI Sweeper
+    file: ci-sweeper.md
+    goal: React to failing CI with minimal fixes and escalation
+    cadence: 5m-15m
+    risk: medium
+    tools: [grok, claude-code, codex, github-actions]
+    skills: [ci-triage, minimal-fix]
+    state: ci-sweeper-state.md
+    phases: [detect, classify, fix, verify, escalate]
+    human_gates: [infra-failures, max-attempts, security-tests]
+
+  - id: post-merge-cleanup
+    name: Post-Merge Cleanup
+    file: post-merge-cleanup.md
+    goal: Follow-up tech debt and cleanup after merges to main
+    cadence: 1d-6h
+    risk: low
+    tools: [grok, claude-code, codex, github-actions]
+    skills: [post-merge-scan, minimal-fix]
+    state: post-merge-state.md
+    phases: [scan-merges, prioritize, fix-small, ticket-large]
+    human_gates: [architectural-debt, feature-flags, large-diffs]
