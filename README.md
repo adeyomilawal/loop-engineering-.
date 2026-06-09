@@ -17,7 +17,6 @@
 <p align="center">
   <img src="assets/cobus-greyling.jpg" alt="Cobus Greyling" />
   <br>
-  <sub>Personal photo • Brand visuals below</sub>
 </p>
 
 </p>
