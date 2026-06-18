@@ -33,6 +33,20 @@ test('loop-init dry-run scaffolds daily-triage', async () => {
   }
 });
 
+test('loop-init scaffolds issue-triage with bundled assets', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'loop-init-'));
+  try {
+    await exec('node', [CLI, dir, '--pattern', 'issue-triage', '--tool', 'grok']);
+    await access(path.join(dir, 'issue-triage-state.md'));
+    await access(path.join(dir, '.grok', 'skills', 'issue-triage', 'SKILL.md'));
+    await access(path.join(dir, '.grok', 'skills', 'loop-verifier', 'SKILL.md'));
+    await access(path.join(dir, 'loop-budget.md'));
+    await access(path.join(dir, 'loop-run-log.md'));
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 test('loop-init scaffolds ci-sweeper with bundled assets', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'loop-init-'));
   try {

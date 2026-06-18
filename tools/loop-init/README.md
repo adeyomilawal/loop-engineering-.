@@ -26,6 +26,7 @@ After scaffolding, always run `npx @cobusgreyling/loop-audit . --suggest` and ac
 | `dependency-sweeper` | `dependency-sweeper-state.md` |
 | `post-merge-cleanup` | `post-merge-state.md` |
 | `changelog-drafter` | `changelog-drafter-state.md` |
+| `issue-triage` | `issue-triage-state.md` |
 
 L2 patterns (`ci-sweeper`, `dependency-sweeper`) also copy `minimal-fix` and `loop-verifier` templates when missing from the starter.
 

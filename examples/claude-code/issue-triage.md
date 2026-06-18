@@ -10,12 +10,13 @@ Same pattern as Grok; uses `$issue-triage` skill invocation and Claude Code sche
 
 ## Skills Setup
 
-Copy and adapt triage instructions to `.claude/skills/issue-triage/SKILL.md`:
+Scaffold or copy the skill:
 
 ```bash
+npx @cobusgreyling/loop-init . --pattern issue-triage --tool claude
+# Or manually:
 mkdir -p .claude/skills/issue-triage
-# Start from templates/SKILL.md.loop-triage — retarget for GitHub issues + discussions
-cp templates/SKILL.md.loop-triage .claude/skills/issue-triage/SKILL.md
+cp templates/SKILL.md.issue-triage .claude/skills/issue-triage/SKILL.md
 ```
 
 Add verifier for L2 graduation:
@@ -52,7 +53,7 @@ Human gate remains on: `P0`, `P1`, `security`, `breaking-change`.
 
 ## GitHub Action Fallback
 
-For event-driven triage on new issues, see [examples/github-actions/daily-triage.yml](../github-actions/daily-triage.yml) as a template — add `issues: opened` trigger and issue-triage prompt.
+For event-driven triage on new issues, see [examples/github-actions/issue-triage.yml](../github-actions/issue-triage.yml).
 
 ## References
 

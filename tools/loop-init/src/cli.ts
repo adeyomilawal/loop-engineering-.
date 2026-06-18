@@ -26,7 +26,7 @@ const PATTERN_STARTERS: Record<Pattern, string> = {
   'dependency-sweeper': 'dependency-sweeper',
   'post-merge-cleanup': 'post-merge-cleanup',
   'changelog-drafter': 'changelog-drafter',
-  'issue-triage': 'minimal-loop', // reuses daily-triage starter + new skill can be added manually or via templates later
+  'issue-triage': 'issue-triage',
 };
 
 const TOOL_SUFFIX: Record<Tool, string> = {

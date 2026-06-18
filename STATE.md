@@ -11,8 +11,8 @@ Last run: 2026-06-17T12:08:32Z (automated daily-triage workflow)
 ## Watch List
 
 - Expand contributor failure stories (dependency sweeper, multi-loop).
-- Collect a production story for Post-Merge Cleanup.
 - Validate `loop-init` scaffolds on fresh projects across all patterns.
+- Dogfood Issue Triage starter on this repo (L1 propose-only).
 
 ## Recent Noise (ignored this run)
 

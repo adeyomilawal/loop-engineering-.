@@ -23,7 +23,7 @@ Faster cadence for busy repos:
 | File | Purpose |
 |------|---------|
 | `issue-triage-state.md` | Rolling backlog health (see [patterns/issue-triage.md](../../patterns/issue-triage.md)) |
-| `issue-triage` skill | Copy from `templates/SKILL.md.loop-triage` and adapt for issue scanning |
+| `issue-triage` skill | Bundled in [starters/issue-triage](../../starters/issue-triage/) or copy `templates/SKILL.md.issue-triage` |
 | `loop-verifier` skill | Light sanity check on proposed labels before L2 |
 | `STATE.md` | Daily Triage reads this; Issue Triage feeds it via cross-reference |
 
