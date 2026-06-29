@@ -39,7 +39,7 @@ Or open a PR that adds a row to the table below:
 
 ## Show & tell
 
-Prefer chat over a PR? Post in [GitHub Discussions → Show your loop](https://github.com/cobusgreyling/loop-engineering/discussions/categories/show-your-loop) with:
+Prefer chat over a PR? Post in [GitHub Discussions → Show and tell](https://github.com/cobusgreyling/loop-engineering/discussions/categories/show-and-tell) with:
 
 1. Which pattern you picked and why
 2. Your first `/loop` or scheduler command
