@@ -32,14 +32,10 @@
 </p>
 
 ```bash
-npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok
+npx @cobusgreyling/loop-init .
 ```
 
-`loop-init` scaffolds your loop and prints your **Loop Ready** score. Paste the badge when you're proud of it:
-
-```bash
-npx @cobusgreyling/loop-audit . --badge
-```
+`loop-init` scaffolds skills, state, and budget files, then prints your **Loop Ready** score and first loop command. Swap `--tool` for `claude`, `codex`, or `opencode`.
 
 <p align="center">
   <a href="docs/QUICKSTART.md">

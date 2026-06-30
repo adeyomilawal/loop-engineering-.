@@ -54,7 +54,7 @@ title: Loop Engineering — Showcase
   <div class="badge">Open source · Tool-agnostic · Production-ready · L3 dogfood · 7 patterns · Interactive tools</div>
   <h1>Stop prompting.<br>Design the loop.<br>Get a score.</h1>
   <p class="lead">
-    Run one command in any repo. <code>loop-init</code> scaffolds your loop and prints a <strong>Loop Ready</strong> score you can paste into your README.
+    Run one command in any repo. <code>loop-init</code> scaffolds your loop and prints your <strong>Loop Ready</strong> score plus the first run line.
   </p>
   <div class="code-block" style="max-width:720px;margin:0 auto 24px;">
     <div class="code-header">
@@ -62,7 +62,7 @@ title: Loop Engineering — Showcase
       <span>terminal — try now</span>
       <button onclick="copyNpxInit()" class="copy-btn">Copy</button>
     </div>
-    <pre>npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok</pre>
+    <pre>npx @cobusgreyling/loop-init .</pre>
   </div>
   <div class="hero-cta">
     <a href="#start" class="btn btn-primary">Try in 60 seconds →</a>
@@ -511,7 +511,7 @@ npx @cobusgreyling/loop-audit . --suggest
 <script>
 // Copy helpers for hero
 function copyNpxInit() {
-  const txt = 'npx @cobusgreyling/loop-init . --pattern daily-triage --tool grok';
+  const txt = 'npx @cobusgreyling/loop-init .';
   navigator.clipboard.writeText(txt).then(() => {
     const b = event.currentTarget; // best effort
   });
