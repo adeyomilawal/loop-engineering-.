@@ -34,7 +34,6 @@ CI sweeper tolerates nothing wasted between runs. A system cron at 5-minute reso
 set -euo pipefail
 opencode run \
   "Run skills/ci-triage/SKILL.md. Classify each failing check. For clear single-file regressions, create a git worktree, run the implementer agent with --dir <worktree>, then run verifier with the diff as --file. Update ci-sweeper-state.md. For infra or security-test failures, escalate to a human with full context. Max 3 attempts per item." \
-  --agent ci-triage \
   --title "CI sweeper"
 ```
 
@@ -46,7 +45,7 @@ If you'd rather keep the loop fully in the CLI, run a long-lived shell loop inst
 
 ```bash
 while true; do
-  opencode run "Run ci-triage. Fix only clear regressions in a worktree with verifier. Max 3 attempts. Escalate infra and security test failures." --agent ci-triage
+  opencode run "Run skills/ci-triage/SKILL.md. Fix only clear regressions in a worktree with verifier. Max 3 attempts. Escalate infra and security test failures."
   sleep 300
 done
 ```
@@ -58,8 +57,8 @@ Same primitive, different scheduler.
 ```bash
 # .github/workflows/ci-sweeper-webhook.yml can post to a small opencode bridge:
 curl -X POST http://opencode-bridge:8080/hooks/agent \
-  -H 'Authorization: Bearer ${OPENCODE_HOOK_TOKEN}' \
-  -H 'Content-Type: application/json' \
+  -H "Authorization: Bearer ${OPENCODE_HOOK_TOKEN}" \
+  -H "Content-Type: application/json" \
   -d '{"message":"Run ci-triage. Inspect recent CI failures. No fixes in report-only mode."}'
 ```
 
@@ -69,7 +68,7 @@ Keep hook endpoints on loopback or a trusted tailnet (see [docs/safety.md](../..
 
 | Role | Opencode shape |
 |------|----------------|
-| Triage | `skills/ci-triage/SKILL.md` (or alias to `loop-triage`) + `--agent ci-triage` |
+| Triage | `skills/ci-triage/SKILL.md` (or alias to `loop-triage`) named in the `opencode run` message |
 | Implementer | `opencode run "..." --agent implementer --dir <worktree>` |
 | Verifier | `opencode run "Verify diff" --agent verifier --file <diff.patch>` |
 

@@ -11,6 +11,16 @@
         "edit": "ask"
       }
     },
+    "implementer": {
+      "name": "implementer",
+      "description": "L2 implementer agent for minimal scoped fixes inside an isolated worktree.",
+      "mode": "subagent",
+      "prompt": "Implement only the requested minimal fix. Stay within the supplied worktree, respect AGENTS.md and LOOP.md, run documented tests, and stop for human approval on denylisted paths.",
+      "permission": {
+        "bash": "ask",
+        "edit": "ask"
+      }
+    },
     "verifier": {
       "name": "verifier",
       "description": "Checker agent for L2+ changes. Reviews diffs and test evidence; APPROVE or REJECT only.",

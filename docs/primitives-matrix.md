@@ -30,7 +30,7 @@ Tool-agnostic loop design: the **capability** is what matters, not the product n
 |---------|------|-------------|-------|----------|----------|--------|----------|
 | Authoring format | `SKILL.md` + optional scripts/references | Same | Same | Same ([AgentSkills](https://agentskills.io)) | Same (`SKILL.md` under `skills/<name>/`) | `SKILL.md` or `.mdc` rules with frontmatter | Markdown rules + workflow files |
 | Distribution | Copy to `.grok/skills/` or user skills dir | Plugin / copy to project | Plugin bundle | `<workspace>/skills/`, ClawHub, `openclaw skills install` | Copy to `skills/`; keep project rules in `AGENTS.md` | `.cursor/skills/` or `.cursor/rules/` | `.windsurf/rules/` + `.windsurf/workflows/` in repo |
-| Invocation | Skill name in prompt or auto-match on description | `$skill-name` or implicit | `$skill-name` | Slash command or auto-injected in system prompt | Name skill in `--prompt` or list in `opencode.json` | Rules auto-apply by glob; skills on demand | `/workflow-name` or Rules always-on in Cascade |
+| Invocation | Skill name in prompt or auto-match on description | `$skill-name` or implicit | `$skill-name` | Slash command or auto-injected in system prompt | Name the skill in the `opencode run` message, or configure named agents in `opencode.json` | Rules auto-apply by glob; skills on demand | `/workflow-name` or Rules always-on in Cascade |
 
 ## Sub-agent Patterns
 

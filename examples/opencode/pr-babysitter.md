@@ -15,13 +15,16 @@ Keep the first week boring: read GitHub state, update state, notify humans.
 ## With Small Auto-Fixes (Week 3+)
 
 ```bash
-git worktree add ../wt-pr-fix -b loop/pr-fix
+FIX_ID="$(date +%Y%m%d%H%M%S)"
+WORKTREE="../wt-pr-fix-$FIX_ID"
+git worktree add "$WORKTREE" -b "loop/pr-fix-$FIX_ID"
 opencode run \
   "Run PR babysitter triage. For PRs authored by us with red CI caused by a clear single-file regression: apply a minimal fix in this worktree and run tests. For review comments, draft a response or patch but do not resolve threads without human approval. Never force-push." \
   --agent implementer \
-  --dir ../wt-pr-fix
-git -C ../wt-pr-fix diff > /tmp/pr-fix.patch
-opencode run "Review the PR fix diff. APPROVE or REJECT only." --agent verifier --file /tmp/pr-fix.patch
+  --dir "$WORKTREE"
+DIFF_FILE="$(mktemp /tmp/pr-fix.XXXXXX.patch)"
+git -C "$WORKTREE" diff > "$DIFF_FILE"
+opencode run "Review the PR fix diff. APPROVE or REJECT only." --agent verifier --file "$DIFF_FILE"
 ```
 
 ## Idempotency

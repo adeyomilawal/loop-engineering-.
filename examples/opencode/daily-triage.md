@@ -21,7 +21,7 @@ Use cron or a systemd timer to run a fresh opencode session each morning. The pr
 ```bash
 opencode run \
   "Run the loop-triage skill. Read STATE.md first. Append high-priority items under High Priority and Watch List. Update Last run timestamp. Do not edit source code. End with a 5-line summary." \
-  --title "Daily triage — repo:$(basename $(pwd))"
+  --title "Daily triage — repo:${PWD##*/}"
 ```
 
 The report-only stance is enforced by `AGENTS.md` and the prompt: no source-code edits in week one.
@@ -34,18 +34,21 @@ Faster cadence during active periods:
 
 ## With Small Auto-Fixes (Week 3+)
 
-Create a verifier named agent, isolate each implementer in a `git worktree`, and pass the worktree path with `--dir`:
+Create named `implementer` and `verifier` agents in `opencode.json`, isolate each implementer in a `git worktree`, and pass the worktree path with `--dir`:
 
 ```bash
-git worktree add ../wt-small-fix -b loop/small-fix
+FIX_ID="$(date +%Y%m%d%H%M%S)"
+WORKTREE="../wt-small-fix-$FIX_ID"
+git worktree add "$WORKTREE" -b "loop/small-fix-$FIX_ID"
 opencode run \
   "Run loop-triage. For one high-priority single-file bugfix: implement the minimal fix, run tests, and write a summary plus diff path. Escalate ambiguous or denylisted paths." \
   --agent implementer \
-  --dir ../wt-small-fix
-git -C ../wt-small-fix diff > /tmp/loop-diff.patch
+  --dir "$WORKTREE"
+DIFF_FILE="$(mktemp /tmp/loop-diff.XXXXXX.patch)"
+git -C "$WORKTREE" diff > "$DIFF_FILE"
 opencode run "Review this diff against project rules and tests. APPROVE or REJECT only." \
   --agent verifier \
-  --file /tmp/loop-diff.patch
+  --file "$DIFF_FILE"
 ```
 
 The verifier sees only the diff; the implementer works only inside the worktree. This preserves the same **maker/checker split** Claude Code expresses with `isolation: worktree`.
@@ -56,10 +59,11 @@ For a one-shot "get main green" session, drive opencode with the [Goal Engineeri
 
 ```bash
 opencode run "Goal: all tests on main pass and lint is clean. Stop when tests pass and write the evidence."
-git diff > /tmp/goal-diff.patch
+DIFF_FILE="$(mktemp /tmp/goal-diff.XXXXXX.patch)"
+git diff > "$DIFF_FILE"
 opencode run "Verify the goal is complete. APPROVE only if tests pass and the diff is minimal." \
   --agent verifier \
-  --file /tmp/goal-diff.patch
+  --file "$DIFF_FILE"
 ```
 
 ## Skills Setup
@@ -71,19 +75,23 @@ mkdir -p skills/loop-triage
 cp templates/SKILL.md.loop-triage skills/loop-triage/SKILL.md
 ```
 
-Create named verifier/implementer agents when you graduate to L2. The CLI writes the agent definition to the path you provide:
+Create named verifier/implementer agents when you graduate to L2. The starter's `opencode.json.example` already includes both names; copy it to `opencode.json` or add this shape manually:
 
-```bash
-opencode agent create \
-  --path .opencode/agent/verifier.md \
-  --description "Review diffs and test evidence; APPROVE or REJECT only." \
-  --mode subagent \
-  --permissions read,grep,bash
-opencode agent create \
-  --path .opencode/agent/implementer.md \
-  --description "Implement minimal scoped fixes in an isolated worktree." \
-  --mode subagent \
-  --permissions read,grep,edit,bash
+```json
+{
+  "agent": {
+    "implementer": {
+      "description": "Implement minimal scoped fixes in an isolated worktree.",
+      "mode": "subagent",
+      "prompt": "Implement only the requested minimal fix. Stay within the supplied worktree and run documented tests."
+    },
+    "verifier": {
+      "description": "Review diffs and test evidence; APPROVE or REJECT only.",
+      "mode": "subagent",
+      "prompt": "Review the supplied diff against project rules and tests. Do not edit files. APPROVE or REJECT only."
+    }
+  }
+}
 ```
 
 ## Sub-agents
