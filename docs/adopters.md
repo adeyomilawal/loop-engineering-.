@@ -2,6 +2,8 @@
 
 Forks and stars mean people are trying this in their own stacks. If you run a loop from this repo (or adapted from it), add yourself here via PR.
 
+**Pinned:** [Add your project — Loop Ready badge + adopters list](https://github.com/cobusgreyling/loop-engineering/discussions/92) (Discussions)
+
 ## Loop Ready badge
 
 Show your readiness level in your README:

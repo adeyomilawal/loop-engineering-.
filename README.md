@@ -80,7 +80,8 @@ A loop is a recursive goal: you define a purpose and the AI iterates (often with
 | [loop-mcp-server](tools/mcp-server/) | MCP runtime lookup for patterns, skills, state — `node tools/mcp-server/dist/index.js` (repo v1; npm pending) |
 | [Goal Engineering](https://github.com/cobusgreyling/goal-engineering) | Companion: Grok Build `/goal` — run-until-done objectives (`npx @cobusgreyling/goal-audit`) |
 | [Stories](stories/) | Real wins and honest failures |
-| [Community update](https://github.com/cobusgreyling/loop-engineering/discussions/89) | **New:** 7 community PRs merged — loop-sync, constraints, MCP server |
+| [Community update](https://github.com/cobusgreyling/loop-engineering/discussions/89) | v1.5.0 release — loop-sync, constraints, MCP server |
+| [Add your project](https://github.com/cobusgreyling/loop-engineering/discussions/92) | **Pinned:** Loop Ready badge + adopters list |
 
 <p align="center">
   <img src="assets/visuals/section-divider.svg" alt="" width="100%" />
